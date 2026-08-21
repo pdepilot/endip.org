@@ -655,7 +655,14 @@ p { margin: 0 0 1em; }
 .stat-card .label { color: var(--text-muted); font-size: 0.9rem; }
 .stat-card .note { font-size: 0.75rem; color: var(--gold); margin-top: 8px; }
 
-.programme-card .card-media { height: 140px; }
+.programme-card .card-media { height: 180px; }
+.programme-card .card-media img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
 .programme-card h3 { font-size: 1.15rem; margin-bottom: 6px; }
 .meta-row { display: flex; flex-wrap: wrap; gap: 8px 14px; color: var(--text-muted); font-size: 0.85rem; margin: 10px 0; }
 

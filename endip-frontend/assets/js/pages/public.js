@@ -5,6 +5,7 @@ import { badge, truncate } from "../utils/formatting.js";
 import { required, email as emailRule, phone as phoneRule, applyErrors } from "../utils/validation.js";
 import { toast, paginate, renderPagination, esc } from "../components/ui.js";
 import { initHeroCarousel } from "../components/heroCarousel.js";
+import { PROGRAMME_IMAGES } from "../config/programmeImages.js";
 import { authService } from "../services/authService.js";
 import {
   programmeService,
@@ -24,7 +25,12 @@ function param(name) {
   return new URLSearchParams(location.search).get(name);
 }
 
-function cover(cls, title) {
+function cover(cls, title, image) {
+  if (image?.src) {
+    const srcset = image.srcset ? ` srcset="${esc(image.srcset)}"` : "";
+    const sizes = image.sizes ? ` sizes="${esc(image.sizes)}"` : "";
+    return `<div class="card-media"><img src="${esc(image.src)}"${srcset}${sizes} alt="${esc(image.alt || title)}" width="640" height="360" loading="lazy"></div>`;
+  }
   return `<div class="card-media ${cls}"><div class="logo-mark">${esc(title)}</div></div>`;
 }
 
@@ -79,7 +85,7 @@ async function initHome() {
 
 function programmeCard(p) {
   return `<article class="card programme-card">
-    ${cover(p.cover, p.title)}
+    ${cover(p.cover, p.title, PROGRAMME_IMAGES[p.slug])}
     <div class="card-body">
       ${badge(p.status)}
       <p class="kicker">${esc(p.category)}</p>
