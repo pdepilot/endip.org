@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-NG" data-base="." data-layout="public" data-page="partner">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partner with ENDIP</title>
+  <meta name="description" content="Partnership enquiry for programme sponsorship, internships, CSR and enterprise development.">
+  <link rel="icon" href="assets/images/end-logo.png">
+  <link rel="stylesheet" href="assets/css/endip.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
+  <main id="main">
+    <div class="page-hero"><div class="container">
+      <h1>Partner with ENDIP</h1>
+      <p class="lede">Tell us how you want to work together.</p>
+    </div></div>
+    <section class="section"><div class="container split">
+      <div>
+        <h2>Ways to collaborate</h2>
+        <ul>
+          <li>Programme sponsorship</li>
+          <li>Internship host partnership</li>
+          <li>CSR</li>
+          <li>Enterprise development</li>
+          <li>Training</li>
+          <li>Research</li>
+          <li>Technology</li>
+          <li>Funding</li>
+          <li>Community development</li>
+        </ul>
+      </div>
+      <form class="card" data-enquiry-form>
+        <div class="card-body">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" required></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+          <div class="field"><label for="org">Organisation</label><input id="org" name="org"></div>
+          <div class="field"><label for="interest">Interest</label>
+            <select id="interest" name="interest">
+              <option>Programme sponsorship</option>
+              <option>Internship partnership</option>
+              <option>CSR</option>
+              <option>Enterprise development</option>
+              <option>Training</option>
+              <option>Research</option>
+              <option>Technology</option>
+              <option>Funding</option>
+              <option>Community development</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+          <button class="btn btn-primary" type="submit">Send enquiry</button>
+        </div>
+      </form>
+      <div class="form-success alert alert-success">Thank you. Your partnership enquiry has been received.</div>
+    </div></section>
+  </main>
+  <footer id="site-footer"></footer>
+  <div id="toast-root"></div>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

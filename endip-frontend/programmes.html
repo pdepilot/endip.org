@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-NG" data-base="." data-layout="public" data-page="programmes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programmes | ENDIP</title>
+  <meta name="description" content="Explore ENDIP programmes including internships, enterprise, financial literacy and skills.">
+  <link rel="icon" href="assets/images/end-logo.png">
+  <link rel="stylesheet" href="assets/css/endip.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
+  <main id="main">
+    <div class="page-hero"><div class="container">
+      <p class="kicker">Programmes</p>
+      <h1>Find a pathway</h1>
+      <p class="lede">Search and filter ENDIP programmes by category, location and application status.</p>
+    </div></div>
+    <section class="section-tight"><div class="container">
+      <div class="filter-bar">
+        <div class="field"><label for="q">Search</label><input id="q" type="search" placeholder="Search programmes..."></div>
+        <div class="field"><label for="category">Category</label>
+          <select id="category"><option value="">All</option><option>Internship</option><option>Entrepreneurship</option><option>Enterprise development</option><option>Education</option><option>Training</option><option>Environment</option><option>Innovation</option></select>
+        </div>
+        <div class="field"><label for="location">Location</label><input id="location" placeholder="e.g. Rivers"></div>
+        <div class="field"><label for="status">Status</label>
+          <select id="status"><option value="">All</option><option>OPEN</option><option>COMING SOON</option><option>ONGOING</option><option>CLOSED</option><option>COMPLETED</option></select>
+        </div>
+        <div class="field"><label for="sort">Sort</label>
+          <select id="sort"><option value="featured">Featured</option><option value="title">Title</option><option value="deadline">Deadline</option><option value="status">Status</option></select>
+        </div>
+        <div class="field"><label for="type">Type</label>
+          <select id="type"><option value="">All</option><option>Workforce development</option><option>Enterprise education</option><option>Capacity development</option><option>School programme</option><option>Skills development</option><option>Digital and vocational skills</option><option>Community enterprise</option><option>Enterprise challenge</option><option>Innovation and digital transformation</option></select>
+        </div>
+      </div>
+      <div id="programme-results"></div>
+    </div></section>
+  </main>
+  <footer id="site-footer"></footer>
+  <div id="toast-root"></div>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

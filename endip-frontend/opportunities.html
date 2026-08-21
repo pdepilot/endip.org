@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-NG" data-base="." data-layout="public" data-page="opportunities">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opportunities | ENDIP</title>
+  <meta name="description" content="Programmes, internships, training, events and volunteer pathways with ENDIP.">
+  <link rel="icon" href="assets/images/end-logo.png">
+  <link rel="stylesheet" href="assets/css/endip.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
+  <main id="main">
+    <div class="page-hero"><div class="container">
+      <h1>Opportunities</h1>
+      <p class="lede">One place to browse programmes, internships, training, entrepreneurship, events and volunteering.</p>
+    </div></div>
+    <section class="section-tight"><div class="container">
+      <div class="filter-bar">
+        <div class="field"><label for="oq">Search</label><input id="oq" type="search" placeholder="Search opportunities..."></div>
+        <div class="field"><label for="otype">Category</label>
+          <select id="otype">
+            <option value="">All</option>
+            <option>Programmes</option>
+            <option>Internships</option>
+            <option>Training</option>
+            <option>Entrepreneurship</option>
+            <option>Events</option>
+            <option>Volunteering</option>
+            <option>Scholarships</option>
+            <option>Other Opportunities</option>
+          </select>
+        </div>
+      </div>
+      <div id="opp-results"></div>
+    </div></section>
+  </main>
+  <footer id="site-footer"></footer>
+  <div id="toast-root"></div>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

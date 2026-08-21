@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-NG" data-base="." data-layout="public" data-page="volunteer">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Volunteer with ENDIP</title>
+  <meta name="description" content="Volunteer with ENDIP across training, events and community programmes.">
+  <link rel="icon" href="assets/images/end-logo.png">
+  <link rel="stylesheet" href="assets/css/endip.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
+  <main id="main">
+    <div class="page-hero"><div class="container">
+      <h1>Volunteer with ENDIP</h1>
+      <p class="lede">Support training, events and community programmes.</p>
+    </div></div>
+    <section class="section"><div class="container split">
+      <div>
+        <h2>Why volunteer</h2>
+        <p>ENDIP’s work depends on people who can facilitate, organise and accompany participants with care. Areas of interest can include training support, events, inclusion and enterprise mentoring.</p>
+        <h2>What we ask</h2>
+        <ul>
+          <li>Skills you can offer</li>
+          <li>When you are available</li>
+          <li>A short motivation</li>
+        </ul>
+      </div>
+      <form class="card" data-enquiry-form>
+        <div class="card-body">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" required></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone"></div>
+          <div class="field"><label for="skills">Skills</label><input id="skills" name="skills"></div>
+          <div class="field"><label for="interest">Area of interest</label>
+            <select id="interest" name="interest">
+              <option>Training</option>
+              <option>Events</option>
+              <option>Inclusion</option>
+              <option>Enterprise mentoring</option>
+            </select>
+          </div>
+          <div class="field"><label for="experience">Experience</label><textarea id="experience" name="experience"></textarea></div>
+          <div class="field"><label for="availability">Availability</label><input id="availability" name="availability"></div>
+          <div class="field"><label for="message">Motivation</label><textarea id="message" name="message" required></textarea></div>
+          <button class="btn btn-primary" type="submit">Submit application</button>
+        </div>
+      </form>
+      <div class="form-success alert alert-success">Thank you. Your volunteer application has been received.</div>
+    </div></section>
+  </main>
+  <footer id="site-footer"></footer>
+  <div id="toast-root"></div>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

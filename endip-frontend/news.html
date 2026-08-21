@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-NG" data-base="." data-layout="public" data-page="news">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News | ENDIP</title>
+  <meta name="description" content="News and programme updates from ENDIP’s existing public articles.">
+  <link rel="icon" href="assets/images/end-logo.png">
+  <link rel="stylesheet" href="assets/css/endip.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
+  <main id="main">
+    <div class="page-hero"><div class="container">
+      <h1>News and insights</h1>
+      <p class="lede">Titles and dates are taken from ENDIP’s published posts. Bodies stay within those public excerpts.</p>
+    </div></div>
+    <section class="section-tight"><div class="container">
+      <div class="filter-bar">
+        <div class="field"><label for="nq">Search</label><input id="nq" type="search" placeholder="Search news..."></div>
+        <div class="field"><label for="ncat">Category</label>
+          <select id="ncat"><option value="">All</option><option>News</option><option>Programme Updates</option><option>Opportunities</option><option>Impact Stories</option></select>
+        </div>
+      </div>
+      <div id="news-results"></div>
+    </div></section>
+  </main>
+  <footer id="site-footer"></footer>
+  <div id="toast-root"></div>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-NG" data-base=".." data-layout="auth" data-page="login">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in | ENDIP</title>
+  <meta name="description" content="Sign in to your ENDIP account.">
+  <link rel="icon" href="../assets/images/end-logo.png">
+  <link rel="stylesheet" href="../assets/css/endip.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header"></header>
+  <main id="main">
+    <section class="section"><div class="container" style="max-width:480px">
+      <h1>Sign in</h1>
+      <p class="lede">Access your participant, entrepreneur or administration workspace.</p>
+      <form class="card" data-auth-form>
+        <div class="card-body">
+          <p id="auth-error" class="field-error"></p>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="username"></div>
+          <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" required autocomplete="current-password"></div>
+          <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+          <p><a href="forgot-password.html">Forgot password</a> · <a href="register.html">Create account</a></p>
+        </div>
+      </form>
+    </div></section>
+  </main>
+  <footer id="site-footer"></footer>
+  <div id="toast-root"></div>
+  <script type="module" src="../assets/js/app.js"></script>
+</body>
+</html>
