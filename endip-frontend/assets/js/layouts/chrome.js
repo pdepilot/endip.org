@@ -143,17 +143,12 @@ function publicFooter() {
   const social = SITE.social;
   return `
     <div class="ft-stage">
-      <div class="ft-watermark" aria-hidden="true">
-        <img src="${asset("images/end-logo.png")}" alt="">
-        <span>ENDIP</span>
-      </div>
       <div class="container">
         <div class="ft-mast">
           <div class="ft-identity">
             <p class="ft-eyebrow">Entrepreneurial Development Initiative</p>
-            <a class="ft-wordmark" href="${href("index.html")}">
-              <img src="${asset("images/end-logo.png")}" alt="" aria-hidden="true">
-              <span>ENDIP</span>
+            <a class="ft-wordmark" href="${href("index.html")}" aria-label="ENDIP">
+              <img src="${asset("images/end-logo.png")}" alt="">
             </a>
             <p class="ft-lead">${SITE.positioning}</p>
           </div>

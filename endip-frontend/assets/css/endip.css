@@ -469,33 +469,6 @@ p { margin: 0 0 1em; }
   font-weight: 700;
 }
 
-.ft-watermark {
-  position: absolute;
-  right: -3%;
-  bottom: -18%;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  pointer-events: none;
-  user-select: none;
-  opacity: 0.07;
-  z-index: 0;
-}
-.ft-watermark img {
-  width: min(42vw, 280px);
-  height: auto;
-  max-width: none;
-  filter: brightness(0) invert(1);
-}
-.ft-watermark span {
-  font-family: var(--serif);
-  font-size: clamp(4.5rem, 18vw, 12rem);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 0.8;
-  color: #fff;
-}
-
 .site-footer--signature.js-reveal .ft-identity,
 .site-footer--signature.js-reveal .ft-orbit,
 .site-footer--signature.js-reveal .ft-statement,
@@ -1235,8 +1208,6 @@ table.data tr:last-child td { border-bottom: 0; }
   .ft-cluster .ft-link span { display: none; }
   .ft-cluster .ft-link:hover { color: #f0d3bd; }
   .ft-colophon { flex-direction: column; gap: 6px; }
-  .ft-watermark { opacity: 0.05; bottom: -8%; right: -8%; }
-  .ft-watermark span { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
