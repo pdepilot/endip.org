@@ -6,6 +6,7 @@ import { required, email as emailRule, phone as phoneRule, applyErrors } from ".
 import { toast, paginate, renderPagination, esc } from "../components/ui.js";
 import { initHeroCarousel } from "../components/heroCarousel.js";
 import { PROGRAMME_IMAGES } from "../config/programmeImages.js";
+import { EVENT_IMAGES } from "../config/eventImages.js";
 import { authService } from "../services/authService.js";
 import {
   programmeService,
@@ -73,7 +74,7 @@ async function initHome() {
   if (events) {
     const upcoming = (await eventService.getAll()).filter((e) => e.timeframe === "upcoming").slice(0, 3);
     events.innerHTML = upcoming.length
-      ? upcoming.map((e) => `<article class="card"><div class="card-body"><p class="kicker">${formatDate(e.date)}</p><h3>${esc(e.title)}</h3><p>${esc(e.location)}</p><a href="${href("event-details.html")}?id=${e.slug}">View event</a></div></article>`).join("")
+      ? upcoming.map((e) => eventCard(e, true)).join("")
       : `<div class="empty-state"><h3>No upcoming events listed</h3><p>Check back as ENDIP publishes new sessions.</p></div>`;
   }
   const news = document.getElementById("home-news");
@@ -81,6 +82,30 @@ async function initHome() {
     const articles = (await articleService.getAll()).slice(0, 3);
     news.innerHTML = articles.map((a) => `<article class="card"><div class="card-body"><p class="kicker">${esc(a.category)}</p><h3>${esc(a.title)}</h3><p>${esc(truncate(a.excerpt, 110))}</p><a href="${href("article.html")}?id=${a.slug}">Read</a></div></article>`).join("");
   }
+}
+
+function eventCard(e, compact = false) {
+  const media = cover(e.cover || "cover-elearn", e.title, EVENT_IMAGES[e.slug]);
+  if (compact) {
+    return `<article class="card event-card">
+      ${media}
+      <div class="card-body">
+        <p class="kicker">${formatDate(e.date)}</p>
+        <h3>${esc(e.title)}</h3>
+        <p>${esc(e.location)}</p>
+        <a href="${href("event-details.html")}?id=${e.slug}">View event</a>
+      </div>
+    </article>`;
+  }
+  return `<article class="card event-card">
+    ${media}
+    <div class="card-body">
+      ${badge(e.timeframe === "past" ? "COMPLETED" : e.status || "OPEN")}
+      <h3>${esc(e.title)}</h3>
+      <div class="meta-row"><span>${formatDate(e.date)}</span><span>${esc(e.startTime)}–${esc(e.endTime)}</span><span>${esc(e.location)}</span></div>
+      <a class="btn btn-primary btn-sm" href="${href("event-details.html")}?id=${e.slug}">${e.timeframe === "past" ? "View" : "Register"}</a>
+    </div>
+  </article>`;
 }
 
 function programmeCard(p) {
@@ -351,19 +376,11 @@ async function initEvents() {
   const events = await eventService.getAll();
   const up = document.getElementById("upcoming-events");
   const past = document.getElementById("past-events");
-  const card = (e) => `<article class="card">
-    ${cover(e.cover || "cover-elearn", e.title)}
-    <div class="card-body">
-      ${badge(e.timeframe === "past" ? "COMPLETED" : e.status || "OPEN")}
-      <h3>${esc(e.title)}</h3>
-      <div class="meta-row"><span>${formatDate(e.date)}</span><span>${esc(e.startTime)}–${esc(e.endTime)}</span><span>${esc(e.location)}</span></div>
-      <a class="btn btn-primary btn-sm" href="${href("event-details.html")}?id=${e.slug}">${e.timeframe === "past" ? "View" : "Register"}</a>
-    </div></article>`;
   if (up) {
     const items = events.filter((e) => e.timeframe === "upcoming");
-    up.innerHTML = items.length ? items.map(card).join("") : `<div class="empty-state"><h3>No upcoming events</h3><p>New events will appear here when published.</p></div>`;
+    up.innerHTML = items.length ? items.map((e) => eventCard(e)).join("") : `<div class="empty-state"><h3>No upcoming events</h3><p>New events will appear here when published.</p></div>`;
   }
-  if (past) past.innerHTML = events.filter((e) => e.timeframe === "past").map(card).join("") || `<div class="empty-state"><p>No past events are listed yet.</p></div>`;
+  if (past) past.innerHTML = events.filter((e) => e.timeframe === "past").map((e) => eventCard(e)).join("") || `<div class="empty-state"><p>No past events are listed yet.</p></div>`;
 }
 
 async function initEventDetails() {

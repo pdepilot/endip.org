@@ -180,6 +180,24 @@ p { margin: 0 0 1em; }
   font-weight: 600;
 }
 
+.site-header--auto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  transform: translateY(-110%);
+  pointer-events: none;
+  transition: transform 0.35s ease;
+}
+.site-header--auto.is-visible {
+  transform: none;
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header--auto { transition: none; }
+}
+
 .has-sub { position: relative; }
 .subnav {
   display: none;
@@ -655,8 +673,10 @@ p { margin: 0 0 1em; }
 .stat-card .label { color: var(--text-muted); font-size: 0.9rem; }
 .stat-card .note { font-size: 0.75rem; color: var(--gold); margin-top: 8px; }
 
-.programme-card .card-media { height: 180px; }
-.programme-card .card-media img {
+.programme-card .card-media,
+.event-card .card-media { height: 180px; }
+.programme-card .card-media img,
+.event-card .card-media img {
   width: 100%;
   height: 100%;
   max-width: none;

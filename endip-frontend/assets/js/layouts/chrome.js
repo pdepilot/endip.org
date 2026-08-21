@@ -60,12 +60,13 @@ export function mountDemoBanner() {
 export function mountPublicChrome() {
   const header = document.getElementById("site-header");
   const footer = document.getElementById("site-footer");
+  const layout = document.documentElement.dataset.layout || "public";
   const user = authService.current();
   const account = user
     ? `<a class="btn btn-outline btn-sm nav-cta" href="${authService.portalFor(user.role)}">${user.name.split(" ")[0]}</a>`
     : `<a class="btn btn-outline btn-sm nav-cta" href="${href("auth/login.html")}">Sign in</a>`;
   if (header) {
-    header.className = "site-header";
+    header.className = layout === "public" ? "site-header site-header--auto" : "site-header";
     header.innerHTML = `<div class="container site-header-inner">
       <a class="brand" href="${href("index.html")}">
         <img src="${asset("images/end-logo.png")}" alt="ENDIP">
@@ -83,6 +84,10 @@ export function mountPublicChrome() {
     toggle?.addEventListener("click", () => {
       const open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", String(open));
+      if (open) {
+        header.classList.add("is-visible");
+        header.setAttribute("aria-hidden", "false");
+      }
     });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && nav.classList.contains("open")) {
@@ -91,12 +96,35 @@ export function mountPublicChrome() {
         toggle?.focus();
       }
     });
+    if (layout === "public") bindHeaderOnScroll(header, nav);
   }
   if (footer) {
-    const layout = document.documentElement.dataset.layout || "public";
     footer.className = layout === "public" ? "site-footer site-footer--signature js-reveal" : "site-footer";
     footer.innerHTML = layout === "public" ? publicFooter() : compactFooter();
   }
+}
+
+function bindHeaderOnScroll(header, nav) {
+  const threshold = 48;
+  let ticking = false;
+
+  function update() {
+    const menuOpen = nav?.classList.contains("open");
+    const show = menuOpen || window.scrollY > threshold;
+    header.classList.toggle("is-visible", show);
+    header.setAttribute("aria-hidden", show ? "false" : "true");
+  }
+
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
+  }, { passive: true });
+  header.addEventListener("focusin", () => header.classList.add("is-visible"));
+  update();
 }
 
 function link(path, label) {
