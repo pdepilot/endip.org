@@ -143,6 +143,10 @@ function publicFooter() {
   const social = SITE.social;
   return `
     <div class="ft-stage">
+      <div class="ft-watermark" aria-hidden="true">
+        <img src="${asset("images/end-logo.png")}" alt="">
+        <span>ENDIP</span>
+      </div>
       <div class="container">
         <div class="ft-mast">
           <div class="ft-identity">
@@ -216,6 +220,7 @@ function publicFooter() {
 
         <div class="ft-colophon">
           <span>© ${year} ${SITE.name}</span>
+          <span class="ft-credit">Developed by <strong>ERIBS Tech</strong></span>
           <span>${SITE.tagline}</span>
         </div>
       </div>
@@ -252,6 +257,7 @@ function compactFooter() {
       </div>
       <div class="footer-meta">
         <span>© ${new Date().getFullYear()} Entrepreneurial Development Initiative</span>
+        <span class="ft-credit">Developed by <strong>ERIBS Tech</strong></span>
         <span>People with Skills Build the World</span>
       </div>
     </div>`;
