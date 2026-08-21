@@ -102,6 +102,7 @@ export function mountPublicChrome() {
     footer.className = layout === "public" ? "site-footer site-footer--signature js-reveal" : "site-footer";
     footer.innerHTML = layout === "public" ? publicFooter() : compactFooter();
   }
+  if (layout === "public") bindScrollTop();
 }
 
 function bindHeaderOnScroll(header, nav) {
@@ -124,6 +125,46 @@ function bindHeaderOnScroll(header, nav) {
     });
   }, { passive: true });
   header.addEventListener("focusin", () => header.classList.add("is-visible"));
+  update();
+}
+
+function bindScrollTop() {
+  if (document.getElementById("scroll-top")) return;
+  const btn = document.createElement("button");
+  btn.id = "scroll-top";
+  btn.type = "button";
+  btn.className = "scroll-top";
+  btn.setAttribute("aria-label", "Scroll to top");
+  btn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.7 14.7 5.3 13.3 12 6.6l6.7 6.7-1.4 1.4L12 9.4z"/></svg>`;
+  document.body.appendChild(btn);
+
+  const showAfter = 320;
+  const delayMs = 450;
+  let ticking = false;
+  let wait = 0;
+
+  function update() {
+    btn.classList.toggle("is-visible", window.scrollY > showAfter);
+  }
+
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
+  }, { passive: true });
+
+  btn.addEventListener("click", () => {
+    window.clearTimeout(wait);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    btn.classList.add("is-waiting");
+    wait = window.setTimeout(() => {
+      btn.classList.remove("is-waiting");
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    }, reduced ? 0 : delayMs);
+  });
   update();
 }
 
