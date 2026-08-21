@@ -2,6 +2,7 @@ import { currentPage, href, safeAppPath } from "./utils/dom.js";
 import { mountDemoBanner, mountPublicChrome, mountAppChrome } from "./layouts/chrome.js";
 import { bindModals, bindTabs } from "./components/ui.js";
 import { initPublicPage } from "./pages/public.js";
+import { initScrollReveal } from "./components/scrollReveal.js";
 import { renderAppView } from "./pages/appViews.js";
 import { authService } from "./services/authService.js";
 import { required, email as emailRule, applyErrors } from "./utils/validation.js";
@@ -22,7 +23,10 @@ async function boot() {
     mountPublicChrome();
     bindTabs();
     bindModals();
-    if (layout === "public") await initPublicPage(page);
+    if (layout === "public") {
+      await initPublicPage(page);
+      initScrollReveal();
+    }
     if (layout === "auth") initAuth(page);
     return;
   }

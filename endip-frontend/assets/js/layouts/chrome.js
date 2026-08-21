@@ -93,8 +93,109 @@ export function mountPublicChrome() {
     });
   }
   if (footer) {
-    footer.className = "site-footer";
-    footer.innerHTML = `<div class="container">
+    const layout = document.documentElement.dataset.layout || "public";
+    footer.className = layout === "public" ? "site-footer site-footer--signature js-reveal" : "site-footer";
+    footer.innerHTML = layout === "public" ? publicFooter() : compactFooter();
+  }
+}
+
+function link(path, label) {
+  return `<a class="ft-link" href="${href(path)}">${label}<span aria-hidden="true">↗</span></a>`;
+}
+
+function socialLink(url, label, path) {
+  if (!url) return "";
+  return `<a class="ft-social" href="${url}" target="_blank" rel="noopener noreferrer" aria-label="${label}">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">${path}</svg>
+  </a>`;
+}
+
+function publicFooter() {
+  const year = new Date().getFullYear();
+  const social = SITE.social;
+  return `
+    <div class="ft-stage">
+      <div class="container">
+        <div class="ft-mast">
+          <div class="ft-identity">
+            <p class="ft-eyebrow">Entrepreneurial Development Initiative</p>
+            <a class="ft-wordmark" href="${href("index.html")}">
+              <img src="${asset("images/end-logo.png")}" alt="" aria-hidden="true">
+              <span>ENDIP</span>
+            </a>
+            <p class="ft-lead">${SITE.positioning}</p>
+          </div>
+          <a class="ft-orbit" href="${href("programmes.html")}">
+            <span class="ft-orbit-ring" aria-hidden="true"></span>
+            <span class="ft-orbit-tick" aria-hidden="true"></span>
+            <span class="ft-orbit-core">
+              <small>Your next opportunity</small>
+              <strong>Starts here</strong>
+            </span>
+          </a>
+        </div>
+
+        <p class="ft-statement">
+          <span>People with skills</span>
+          <span>build the world.</span>
+        </p>
+        <p class="ft-closing">Building sustainable enterprises. Creating opportunities. Empowering people.</p>
+
+        <nav class="ft-index" aria-label="Footer">
+          <div class="ft-cluster">
+            <h2>Explore ENDIP</h2>
+            ${link("index.html", "Home")}
+            ${link("about.html", "About")}
+            ${link("events.html", "Events")}
+            ${link("news.html", "News")}
+          </div>
+          <div class="ft-cluster">
+            <h2>Programmes</h2>
+            ${link("programmes.html", "All programmes")}
+            ${link("opportunities.html", "Opportunities")}
+            ${link("impact.html", "Impact")}
+            ${link("success-stories.html", "Success stories")}
+          </div>
+          <div class="ft-cluster">
+            <h2>Enterprise</h2>
+            ${link("businesses.html", "Business Network")}
+            ${link("partner-with-us.html", "Partner with ENDIP")}
+            ${link("volunteer.html", "Volunteer")}
+            ${link("programmes.html", "Apply")}
+          </div>
+          <div class="ft-cluster">
+            <h2>Resources</h2>
+            ${link("about.html", "Who we are")}
+            ${link("partners.html", "Partners")}
+            ${link("contact.html", "Contact")}
+            ${link("verify.html", "Verify a certificate")}
+          </div>
+        </nav>
+
+        <div class="ft-presence">
+          <div class="ft-where">
+            <strong>${SITE.contact.office}</strong>
+            <p>${SITE.contact.address}</p>
+            <p>${SITE.contact.phones.map((n) => `<a href="tel:${n.replace(/\s/g, "")}">${n}</a>`).join(" · ")}</p>
+            <p><a href="mailto:${SITE.contact.email}">${SITE.contact.email}</a></p>
+          </div>
+          <div class="ft-connect">
+            ${socialLink(social.facebook, "ENDIP on Facebook", '<path fill="currentColor" d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v3H6v4h3v8h4v-8h3.2L17 12h-4V9c0-.6.4-1 1-1z"/>')}
+            ${socialLink(social.linkedin, "ENDIP on LinkedIn", '<path fill="currentColor" d="M6.5 9H3v12h3.5V9zM4.8 3C3.5 3 2.5 4 2.5 5.2S3.5 7.5 4.8 7.5 7 6.5 7 5.2 6 3 4.8 3zM21 21h-3.5v-6.2c0-1.9-.7-3.1-2.4-3.1-1.3 0-2 .9-2.3 1.7-.1.3-.1.7-.1 1.1V21H9.2s.1-10.7 0-12H12.7v1.9c.5-.8 1.4-2 3.5-2 2.6 0 4.8 1.7 4.8 5.3V21z"/>')}
+            ${socialLink(social.youtube, "ENDIP on YouTube", '<path fill="currentColor" d="M23 7.5s-.2-1.6-.9-2.3c-.9-.9-1.9-.9-2.4-1C16.6 4 12 4 12 4h0s-4.6 0-7.7.2c-.5.1-1.5.1-2.4 1C1.2 5.9 1 7.5 1 7.5S.8 9.4.8 11.3v1.4c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2.1.9 2.6 1 1.9.2 7.5.2 7.5.2s4.6 0 7.7-.2c.5-.1 1.5-.1 2.4-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.4c0-1.9-.2-3.8-.2-3.8zM9.8 14.8V8.7l6.2 3.1-6.2 3z"/>')}
+          </div>
+        </div>
+
+        <div class="ft-colophon">
+          <span>© ${year} ${SITE.name}</span>
+          <span>${SITE.tagline}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function compactFooter() {
+  return `<div class="container">
       <div class="footer-grid">
         <div>
           <h3>ENDIP</h3>
@@ -126,7 +227,6 @@ export function mountPublicChrome() {
         <span>People with Skills Build the World</span>
       </div>
     </div>`;
-  }
 }
 
 const MENUS = {
